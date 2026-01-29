@@ -1,0 +1,1081 @@
+/* --- 1. IMPORT FONTS --- */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+/* LIGHT THEME OVERRIDES */
+body.light-mode {
+    --bg-dark: rgba(244, 247, 246, 0.95); /* Light grey with slight transparency for nav */
+    --bg-light: #FFFFFF;
+    --text-main: #121212;
+    --text-muted: #555555;
+    --card-bg: #FFFFFF;
+}
+
+/* THEME TOGGLE BUTTON */
+.toggle-btn {
+    background: none;
+    border: 2px solid var(--text-muted);
+    color: var(--text-main);
+    cursor: pointer;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 1.2rem;
+    transition: 0.3s;
+}
+
+/* CONTACT WRAPPER */
+.contact-wrapper {
+    display: flex;
+    gap: 40px;
+    margin-top: 40px;
+}
+
+.contact-form {
+    flex: 2; /* Takes up more space */
+    background: var(--bg-light);
+    padding: 30px;
+    border-radius: 15px;
+    border: 1px solid #333;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+.form-group input, .form-group textarea {
+    width: 100%;
+    padding: 12px;
+    background: var(--bg-dark);
+    border: 1px solid #444;
+    border-radius: 8px;
+    color: var(--text-main);
+}
+
+.contact-info {
+    flex: 1; /* Takes up less space */
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.info-card {
+    background: var(--bg-light);
+    padding: 25px;
+    border-radius: 15px;
+    border: 1px solid #333;
+}
+/* Ensure icons in the Contact section align in a row */
+.social-icons {
+    display: flex;
+    gap: 15px;      /* Space between the icon boxes */
+    margin-top: 15px;
+    justify-content: flex-start; /* Aligns them to the left */
+}
+
+/* This ensures the social-box style we created earlier applies here too */
+.social-icons .social-box {
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(128, 128, 128, 0.3);
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+/* Hover effect for the contact section icons */
+.social-icons .social-box:hover {
+    border-color: var(--gradient-accent);
+    transform: translateY(-3px);
+}
+
+.social-icons .social-box i {
+    font-size: 1.2rem;
+    color: var(--text-main);
+}
+
+
+/* FOOTER STYLES */
+.footer {
+    background: var(--bg-dark);
+    padding: 60px 0 20px;
+    border-top: 1px solid #333;
+}
+
+.footer-grid {
+    display: flex;
+    justify-content: space-between;
+    gap: 40px;
+    padding-bottom: 40px;
+}
+
+.footer-col { flex: 1; }
+
+.footer-col h3 {
+    margin-bottom: 20px;
+    color: var(--text-main);
+}
+
+.footer-col ul { list-style: none; }
+.footer-col ul li { margin-bottom: 10px; }
+
+.social-icons-footer {
+    display: flex;
+    gap: 15px;
+}
+
+/* Style for the Icons inside the boxes */
+.social-box i {
+    font-size: 1.2rem; /* Adjusts icon size */
+    color: var(--text-main); /* Icon color matches the theme text */
+    transition: 0.3s;
+}
+
+/* Hover effect for the icon itself */
+.social-box:hover i {
+    color: #4facfe; /* Icon turns blue on hover */
+    transform: scale(1.1); /* Icon grows slightly */
+}
+
+/* Ensure the boxes are perfectly centered for icons */
+.social-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 45px;
+    height: 45px;
+    border: 1px solid rgba(128, 128, 128, 0.3);
+    border-radius: 10px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 20px;
+    border-top: 1px solid #333;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+/* --- 2. THEME VARIABLES (The Palette) --- */
+:root {
+    /* Pleasant Dark Blacks */
+    --bg-dark: #121212;   /* Deep Charcoal (Hero, Projects) */
+    --bg-light: #1E1E1E;  /* Lighter Charcoal (About, Contact) */
+    
+    /* Text Colors */
+    --text-main: #E0E0E0; /* Off-white (easier on eyes than pure white) */
+    --text-muted: #A0A0A0; /* Light Grey for paragraphs */
+    
+    /* The Gradient Theme (Cyan to Blue) */
+    --gradient-accent: linear-gradient(90deg, #00f2fe 0%, #4facfe 100%);
+    
+    /* Cards */
+    --card-bg: #252525;    /* Slightly lighter than sections for visibility */
+    --shadow: 0 10px 30px rgba(0, 0, 0, 0.5); 
+}
+
+/* --- 3. GENERAL SETUP --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    line-height: 1.6;
+    padding-top: 80px; /* Space for the sticky navbar */
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* --- 4. NAVBAR (Sticky & Glassy) --- */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    /* CHANGED: Now uses the variable that shifts with the theme */
+    background-color: var(--bg-dark); 
+    padding: 1rem 2rem;
+    z-index: 1000;
+    /* CHANGED: The border color now also uses a variable or a subtle transparent shade */
+    border-bottom: 1px solid rgba(128, 128, 128, 0.2); 
+    transition: background-color 0.3s ease; /* Makes the color swap smooth */
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* --- LOGO STYLING --- */
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;           /* Space between the picture and your name */
+    text-decoration: none; /* Removes the underline from the link */
+    cursor: pointer;
+}
+
+.logo-img {
+    width: 40px;         /* Adjust size to fit your navbar height */
+    height: 40px;
+    border-radius: 8px;  /* Slightly rounded corners */
+    object-fit: cover;   /* Prevents the image from stretching */
+    border: 1px solid var(--text-muted); /* Subtle border for definition */
+}
+
+.logo span {
+    font-size: 1.5rem;
+    font-weight: 600;
+    background: var(--gradient-accent);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    transition: opacity 0.3s ease;
+}
+
+/* Hover effect for the entire logo link */
+.logo:hover span {
+    opacity: 0.8;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+}
+
+/* --- THE COOL GRADIENT UNDERLINE EFFECT --- */
+.nav-links a {
+    color: var(--text-main);
+    font-weight: 500;
+    position: relative; /* Needed to position the line */
+}
+
+/* The invisible line that appears */
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    width: 0;             /* Hidden by default */
+    height: 3px;          /* Thickness of line */
+    bottom: -5px;         /* Position below text */
+    left: 0;
+    background: var(--gradient-accent); /* The Gradient Color */
+    transition: width 0.3s ease; /* Smooth animation */
+    border-radius: 2px;
+}
+
+/* Expand line on hover */
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+/* --- 5. SECTION 1: HERO (Darker) --- */
+/* --- UPDATED HERO SECTION STYLING --- */
+
+/* --- HERO SECTION LAYOUT --- */
+.hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 5%;
+    background-color: var(--bg-dark);
+    overflow: hidden;
+    z-index: 1;
+}
+
+.hero-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1200px;
+    gap: 50px; /* Space between text and visual */
+}
+
+/* --- BACKGROUND: CYBER GRID ANIMATION --- */
+.hero-bg-animation {
+    position: absolute;
+    width: 200%;
+    height: 200%;
+    top: -50%;
+    left: -50%;
+    z-index: -1;
+    background-image: 
+        linear-gradient(rgba(79, 172, 254, 0.1) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(79, 172, 254, 0.1) 1px, transparent 1px);
+    background-size: 50px 50px; /* Size of grid squares */
+    transform: perspective(500px) rotateX(60deg); /* 3D Tilted Floor Effect */
+    animation: gridMove 20s linear infinite;
+    opacity: 0.4;
+}
+
+/* Darkens the edges so the grid fades out */
+.hero::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: radial-gradient(circle, transparent 20%, var(--bg-dark) 90%);
+    z-index: -1;
+}
+
+@keyframes gridMove {
+    0% { transform: perspective(500px) rotateX(60deg) translateY(0); }
+    100% { transform: perspective(500px) rotateX(60deg) translateY(50px); }
+}
+
+/* --- LEFT SIDE: TEXT CONTENT --- */
+.hero-content {
+    flex: 1;
+    max-width: 600px;
+    z-index: 2;
+}
+
+.hero-hook {
+    color: /*var(--gradient-accent);*/ var(--text-main);
+    background:/* var(--gradient-accent); */ var(--text-main);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+    display: inline-block;
+}
+
+.hero-name {
+    font-size: 4.5rem;
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 15px;
+    
+    /* 1. Define a larger gradient that can move */
+    /* Note: We repeat the first color at the end to make the loop seamless */
+    background: linear-gradient(90deg, #4facfe, #00f2fe, #a890fe, #4facfe);
+    background-size: 200% auto;
+    
+    /* 2. Clip the background to the text */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    
+    /* 3. The Animation: Makes it flow */
+    animation: gradientFlow 3s linear infinite;
+    
+    /* 4. The Glow: Adds depth without breaking the gradient text */
+    filter: drop-shadow(0 0 15px rgba(79, 172, 254, 0.4));
+}
+
+
+/* Define the animation keyframes */
+@keyframes gradientFlow {
+    0% { background-position: 0% center; }
+    100% { background-position: 200% center; }
+}
+
+/* TYPEWRITER TEXT FIX: Uses variable now */
+.typewriter-text {
+    color: var(--text-main); /* Changes automatically with theme! */
+    font-weight: 600;
+    margin-left: 10px;
+    border-bottom: 3px solid #4facfe; /* Cool underline effect */
+}
+
+.hero-description {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    margin-bottom: 30px;
+    line-height: 1.6;
+}
+
+/* --- BUTTONS --- */
+.hero-buttons {
+    display: flex;
+    gap: 20px;
+}
+
+/* Primary Button (Gradient) */
+.btn-primary {
+    background: var(--gradient-accent);
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 50px;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: transform 0.3s ease;
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(79, 172, 254, 0.4);
+}
+
+/* Outline Button (Blue Border) */
+.btn-outline {
+    background: transparent;
+    color: var(--text-main);
+    border: 2px solid #4facfe; /* Matches theme */
+    padding: 12px 30px;
+    border-radius: 50px;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+}
+
+.btn-outline:hover {
+    background: rgba(79, 172, 254, 0.1); /* Subtle blue fill on hover */
+    transform: translateY(-3px);
+}
+
+/* --- RIGHT SIDE: ORBIT ANIMATION --- */
+.hero-visual {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.orbit-container {
+    position: relative;
+    width: 350px;
+    height: 350px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* The Glowing Core */
+.orbit-center {
+    width: 80px;
+    height: 80px;
+    background: var(--gradient-accent);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    color: white;
+    box-shadow: 0 0 30px rgba(79, 172, 254, 0.6);
+    z-index: 10;
+}
+
+/* The Orbit Path */
+.orbit-container::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border: 2px dashed rgba(128, 128, 128, 0.2);
+    border-radius: 50%;
+    animation: spin 20s linear infinite;
+}
+
+/* Orbiting Items */
+.orbit-item {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    background: var(--bg-light);
+    border: 1px solid #4facfe;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    color: var(--text-main);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    /* Animation to make them revolve */
+    animation: orbitRotate 15s linear infinite;
+}
+
+/* Positioning the items on the circle */
+.item-1 { top: 0; left: 50%; margin-left: -25px; margin-top: -25px; animation-delay: 0s; }
+.item-2 { top: 50%; right: 0; margin-right: -25px; margin-top: -25px; animation-delay: -3.75s; }
+.item-3 { bottom: 0; left: 50%; margin-left: -25px; margin-bottom: -25px; animation-delay: -7.5s; }
+.item-4 { top: 50%; left: 0; margin-left: -25px; margin-top: -25px; animation-delay: -11.25s; }
+
+/* Keyframes for rotation */
+@keyframes spin {
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes orbitRotate {
+    0% { transform: rotate(0deg) translateX(175px) rotate(0deg); }
+    100% { transform: rotate(360deg) translateX(175px) rotate(-360deg); }
+}
+
+/* --- RESPONSIVE FIX --- */
+@media (max-width: 968px) {
+    .hero-container {
+        flex-direction: column-reverse; /* Put visual on top for mobile */
+        text-align: center;
+        padding-top: 100px;
+    }
+
+    .hero-bg-animation {
+        display: none; /* Hide grid on mobile to save battery */
+    }
+
+    .orbit-container {
+        width: 280px;
+        height: 280px;
+    }
+    
+    @keyframes orbitRotate {
+        0% { transform: rotate(0deg) translateX(140px) rotate(0deg); }
+        100% { transform: rotate(360deg) translateX(140px) rotate(-360deg); }
+    }
+    
+    .hero-name { font-size: 3rem; }
+    
+    .hero-buttons {
+        justify-content: center;
+    }
+}
+
+/* --- 6. SECTION 2: ABOUT (Lighter Black) --- */
+/* --- ABOUT SECTION REFINEMENTS --- */
+
+
+.about-section {
+    background-color: var(--bg-light); /* Uses your theme's lighter dark shade */
+    padding: 100px 20px;
+}
+
+.about-container {
+    display: flex;
+    align-items: center; /* Vertically centers image and text */
+    gap: 60px;           /* Spacing between the image and text blocks */
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* --- IMAGE & PROFESSIONAL EFFECT --- */
+.about-image-wrapper {
+    flex: 1;             /* Takes up proportionate space */
+    position: relative;  /* Needed to position the effect behind it */
+    border-radius: 25px; /* Matches the image's rounded corners */
+    z-index: 1;
+}
+
+/* The "Blinking Gradient" Effect */
+.about-image-wrapper::before {
+    content: '';
+    position: absolute;
+    /* Creates a border-like layer behind the image */
+    top: -4px; left: -4px; right: -4px; bottom: -4px;
+    /* A professional, multi-color gradient */
+    background: linear-gradient(45deg, #4facfe, #00f2fe, #a890fe, #ea8d8d);
+    background-size: 400% 400%; /* Allows the gradient to move */
+    z-index: -1;         /* Places it behind the image */
+    border-radius: 28px; /* Slightly larger than the image radius */
+    opacity: 0.6;        /* Subtle transparency */
+    /* The animation that makes it pulse and shift */
+    animation: gradientPulse 10s ease infinite;
+}
+
+/* The Animation Keyframes */
+@keyframes gradientPulse {
+    0% { background-position: 0% 50%; opacity: 0.5; }
+    50% { background-position: 100% 50%; opacity: 0.8; }
+    100% { background-position: 0% 50%; opacity: 0.5; }
+}
+
+.about-profile-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 20px; /* Slightly round corners */
+    /* A subtle inner shadow to make the image pop from the effect */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+}
+
+/* --- TEXT CONTENT --- */
+.about-text-content {
+    flex: 1.4; /* Takes up a bit more space than the image */
+}
+
+.about-title {
+    text-align: center; /* Center the title relative to the text block */
+    font-size: 3rem;
+    margin-bottom: 30px;
+    color: var(--text-main);
+}
+
+.about-text-content p {
+    margin-bottom: 25px;
+    font-size: 1.1rem;
+    color: var(--text-main);
+    text-align: justify; /* Professional block text alignment */
+    line-height: 1.7;
+}
+
+/* Bold keywords - simple bold, no blue color */
+.about-text-content strong {
+    font-weight: 700;
+    color: var(--text-main);
+}
+
+/* --- SKILL TAGS --- */
+.skills-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 35px;
+}
+
+.skill-tag {
+    /* Using a very subtle, dark background for the tags */
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--text-main);
+    padding: 8px 18px;
+    border-radius: 25px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.skill-tag:hover {
+    /* On hover, they get the theme's gradient color */
+    background: var(--gradient-accent);
+    border-color: transparent;
+    color: #fff;
+    transform: translateY(-3px);
+}
+
+/* --- MOBILE RESPONSIVE --- */
+@media (max-width: 968px) {
+    .about-container {
+        flex-direction: column; /* Stack image on top of text */
+        text-align: center;
+    }
+
+    .about-image-wrapper {
+        width: 90%; /* Make image smaller on tablets/phones */
+        margin-bottom: 50px;
+    }
+    
+    .about-text-content p {
+        text-align: left; /* Easier to read on small screens */
+    }
+    
+    .skills-container {
+        justify-content: center; /* Center tags on mobile */
+    }
+}
+
+/* --- 7. SECTION 3: PROJECTS (Darker Black) --- */
+
+
+/* --- PROJECTS SECTION --- */
+.projects-section {
+    background-color: var(--bg-dark);
+    padding: 120px 20px; /* Elongated section */
+}
+
+.section-title {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    background: var(--gradient-accent);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.section-subtitle {
+    text-align: center;
+    color: var(--text-muted);
+    margin-bottom: 60px;
+}
+
+/* --- THE GRID (3 Columns) --- */
+.projects-grid {
+    display: grid;
+    /* This ensures 3 columns on large screens, auto-adjusts on mobile */
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* --- PROJECT CARD DESIGN --- */
+.project-card {
+    background: var(--card-bg);
+    border-radius: 20px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    position: relative;
+    
+    /* THE THIN GRADIENT BORDER TRICK */
+    border: 2px solid transparent; /* Transparent base border */
+    background-image: linear-gradient(var(--card-bg), var(--card-bg)), var(--gradient-accent);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+    
+    /* Shadow for depth */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+.project-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(79, 172, 254, 0.3); /* Blue glow on hover */
+}
+
+.card-image img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+/* Zoom image slightly on hover */
+.project-card:hover .card-image img {
+    transform: scale(1.1);
+}
+
+.card-content {
+    padding: 25px;
+}
+
+.card-content h3 {
+    font-size: 1.4rem;
+    margin-bottom: 5px;
+    color: var(--text-main);
+}
+
+.card-content p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    margin-bottom: 15px;
+}
+
+.read-more {
+    font-size: 0.9rem;
+    color: #4facfe; /* Blue text */
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+/* --- MODAL (POPUP) STYLES --- */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.85); /* Dark Backdrop */
+    backdrop-filter: blur(5px);
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.modal-content {
+    background-color: var(--card-bg);
+    margin: auto;
+    padding: 0;
+    border-radius: 20px;
+    max-width: 800px;
+    width: 100%;
+    border: 1px solid #4facfe;
+    box-shadow: 0 0 30px rgba(79, 172, 254, 0.4);
+    position: relative;
+    overflow: hidden;
+    animation: zoomIn 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+@keyframes zoomIn {
+    from { transform: scale(0.8); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+.modal-img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+}
+
+.modal-text {
+    padding: 30px;
+}
+
+.modal-text h3 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+    color: var(--text-main);
+}
+
+.modal-tags {
+    margin-bottom: 20px;
+    color: #4facfe;
+    font-weight: 600;
+}
+
+.modal-text p {
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin-bottom: 25px;
+}
+
+/* Close Button (X) */
+.close-modal {
+    color: #fff;
+    position: absolute;
+    top: 20px;
+    right: 25px;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+    line-height: 1;
+    z-index: 10;
+    text-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+
+.close-modal:hover {
+    color: #4facfe;
+}
+
+/* Mobile responsive for Modal */
+@media (max-width: 768px) {
+    .modal-img { height: 200px; }
+    .modal-text h3 { font-size: 1.5rem; }
+}
+
+
+
+/* --- 8. SECTION 4: CONTACT (Lighter Black) --- */
+
+/* --- CONTACT SECTION --- */
+.contact-section {
+    padding: 100px 20px;
+    background-color: var(--bg-dark); /* Matches your site theme */
+    position: relative;
+    z-index: 1;
+}
+
+/* --- CONTAINER LAYOUT --- */
+.contact-container {
+    display: grid;
+    /* 60% for Form, 40% for Info - Visually balanced */
+    grid-template-columns: 1.5fr 1fr; 
+    gap: 50px;
+    max-width: 1200px;
+    margin: 0 auto;
+    align-items: start; /* Aligns tops of both boxes */
+}
+
+/* Ensure the boxes fill their allocated grid space */
+.contact-form-wrapper, 
+.contact-info-wrapper {
+    width: 100%; 
+}
+
+/* --- MOBILE RESPONSIVE FIX --- */
+/* Changed from 968px to 768px so it stays side-by-side on laptops */
+/*@media (max-width: 768px) {
+    .contact-container {
+        grid-template-columns: 1fr; /* Stack vertically on phones/tablets 
+        gap: 40px;
+    }
+    
+    .contact-section {
+        padding: 60px 20px;
+    }
+}
+
+/* --- THE FORM CARD --- */
+.contact-form-wrapper {
+    background: var(--card-bg); /* Dark card background */
+    padding: 40px;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.05); /* Very subtle border */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+.contact-title {
+    font-size: 2rem;
+    margin-bottom: 10px;
+    color: var(--text-main);
+}
+
+.contact-subtitle {
+    color: var(--text-muted);
+    margin-bottom: 30px;
+}
+
+/* --- INPUT FIELDS STYLING --- */
+.input-group {
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 0.9rem;
+    color: var(--text-main);
+    font-weight: 500;
+}
+
+/* The Input Boxes */
+.input-group input,
+.input-group textarea {
+    width: 100%;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.03); /* Slight transparency */
+    border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle border */
+    border-radius: 12px;
+    color: #fff;
+    font-size: 1rem;
+    font-family: inherit;
+    transition: all 0.3s ease;
+}
+
+.input-group textarea {
+    height: 150px;
+    resize: vertical; /* User can resize height only */
+}
+
+/* FOCUS EFFECT: The "Glow" when you click an input */
+.input-group input:focus,
+.input-group textarea:focus {
+    outline: none;
+    border-color: #4facfe; /* Theme Blue */
+    background: rgba(255, 255, 255, 0.07);
+    box-shadow: 0 0 15px rgba(79, 172, 254, 0.2); /* Soft blue glow */
+}
+
+/* Placeholder text color */
+::placeholder {
+    color: rgba(255, 255, 255, 0.3);
+}
+
+/* --- RIGHT SIDE: CONTACT INFO --- */
+.contact-info-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.info-card {
+    background: var(--card-bg);
+    padding: 30px;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: transform 0.3s ease;
+}
+
+.info-card:hover {
+    transform: translateY(-5px); /* Gentle float effect */
+}
+
+.info-card h3 {
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    color: var(--text-main);
+}
+
+.info-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 15px;
+    color: var(--text-muted);
+    font-size: 1rem;
+}
+
+.info-item i {
+    color: #4facfe; /* Icon color */
+    font-size: 1.2rem;
+}
+
+/* --- SOCIAL LINKS ROW --- */
+.social-links {
+    display: flex;
+    gap: 15px;
+}
+
+.social-btn {
+    width: 45px;
+    height: 45px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.05);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-main);
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.social-btn:hover {
+    background: var(--gradient-accent);
+    color: #fff;
+    transform: translateY(-3px);
+    border-color: transparent;
+}
+
+/* --- MOBILE RESPONSIVE --- */
+/*@media (max-width: 968px) {
+    .contact-container {
+        grid-template-columns: 1fr; /* Stack them vertically 
+        gap: 40px;
+    }
+    
+    .contact-section {
+        padding: 60px 20px;
+    }
+}
+
+
+/* --- 9. MOBILE RESPONSIVE --- */
+
+
+@media (max-width: 768px) {
+    .hero h1 { font-size: 2.5rem; }
+    
+    .about-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    nav {
+        flex-direction: column;
+        gap: 15px;
+    }
+}
